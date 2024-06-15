@@ -36,58 +36,58 @@ Proyek ini adalah aplikasi sederhana yang menggunakan Arduino dan sensor suhu LM
 
 # Kontribusi untuk pembelajaran yang lebih mendalam
 
-   #include <UIPEthernet.h>
+      #include <UIPEthernet.h>
+   
+      // Pengaturan IP Address
+      byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
+      IPAddress ip(192, 168, 67, 164);
+      
+      EthernetServer server(80);
+      
+      // Pin untuk sensor suhu LM35
+      const int sensorPin = A0;
+   
+      // Data diri
+      String nama = "Istana Islam";
+      String nim = "1462100051";
+      String tanggalLahir = "8 September 2001";
+      String email = "gerurushmore@gmail.com";
+   
+      void setup() {
+     // Memulai komunikasi serial
+     Serial.begin(9600);
+   
+     // Memulai UIPEthernet
+     Ethernet.begin(mac, ip);
+     server.begin();
+     Serial.print("Server IP: ");
+     Serial.println(Ethernet.localIP());
+      }
+   
+      void loop() {
+     // Membaca nilai dari sensor suhu
+     int sensorValue = analogRead(sensorPin);
+     float temperature = (sensorValue / 1024.0) * 5.0 * 100;
 
-// Pengaturan IP Address
-byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
-IPAddress ip(192, 168, 67, 164);
+     // Menampilkan data suhu dan data diri pada terminal serial
+     Serial.print("Temperature: ");
+     Serial.print(temperature);
+     Serial.println(" C");
+     Serial.print("Nama: ");
+     Serial.println(nama);
+     Serial.print("NIM: ");
+     Serial.println(nim);
+     Serial.print("Tanggal Lahir: ");
+     Serial.println(tanggalLahir);
+     Serial.print("Email: ");
+     Serial.println(email);
 
-EthernetServer server(80);
+     // Menunggu beberapa detik sebelum membaca kembali
+     delay(5000);
 
-// Pin untuk sensor suhu LM35
-const int sensorPin = A0;
-
-// Data diri
-String nama = "Istana Islam";
-String nim = "1462100051";
-String tanggalLahir = "8 September 2001";
-String email = "gerurushmore@gmail.com";
-
-void setup() {
-  // Memulai komunikasi serial
-  Serial.begin(9600);
-
-  // Memulai UIPEthernet
-  Ethernet.begin(mac, ip);
-  server.begin();
-  Serial.print("Server IP: ");
-  Serial.println(Ethernet.localIP());
-}
-
-void loop() {
-  // Membaca nilai dari sensor suhu
-  int sensorValue = analogRead(sensorPin);
-  float temperature = (sensorValue / 1024.0) * 5.0 * 100;
-
-  // Menampilkan data suhu dan data diri pada terminal serial
-  Serial.print("Temperature: ");
-  Serial.print(temperature);
-  Serial.println(" C");
-  Serial.print("Nama: ");
-  Serial.println(nama);
-  Serial.print("NIM: ");
-  Serial.println(nim);
-  Serial.print("Tanggal Lahir: ");
-  Serial.println(tanggalLahir);
-  Serial.print("Email: ");
-  Serial.println(email);
-
-  // Menunggu beberapa detik sebelum membaca kembali
-  delay(5000);
-
-  // Mendengarkan klien
-  EthernetClient client = server.available();
-  if (client) {
+     // Mendengarkan klien
+     EthernetClient client = server.available();
+     if (client) {
     Serial.println("New client");
     boolean currentLineIsBlank = true;
     while (client.connected()) {
@@ -128,8 +128,8 @@ void loop() {
     delay(1);
     client.stop();
     Serial.println("Client disconnected");
-  }
-}
+     }
+   }
 
 
 
