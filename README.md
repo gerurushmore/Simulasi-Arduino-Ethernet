@@ -14,7 +14,7 @@ Proyek ini adalah aplikasi sederhana yang menggunakan Arduino dan sensor suhu LM
 1. Arduino IDE
 2. UIPEthernet libraly
 
-#Cara Kerja
+# Cara Kerja
 1. Install Arduino
 2. Unduh dan extract Libraly di Arduino IDE
 3. Setelah install dan menambahkan libraly di Arduino, lalu inputkan source code
@@ -34,9 +34,9 @@ Proyek ini adalah aplikasi sederhana yang menggunakan Arduino dan sensor suhu LM
 10. tampilan Virtual Terminal
 ![image](https://github.com/gerurushmore/Simulasi-Arduino-Ethernet/assets/129182758/1f20555d-2236-4793-a4b6-a0179dbba424)
 
-#Kontribusi untuk pembelajaran yang lebih mendalam
+# Kontribusi untuk pembelajaran yang lebih mendalam
 
-  #include <UIPEthernet.h>
+   #include <UIPEthernet.h>
 
 // Pengaturan IP Address
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
@@ -130,7 +130,6 @@ void loop() {
     Serial.println("Client disconnected");
   }
 }
-
 
 
 
